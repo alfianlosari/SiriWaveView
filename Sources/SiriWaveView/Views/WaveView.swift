@@ -10,11 +10,11 @@ import SwiftUI
 
 private struct WaveGeometry {
     
-    var wave: SiriWave.Wave
+    var wave: Wave
     var points: [CGPoint]
     var origin: CGPoint
     
-    init(_ wave: SiriWave.Wave, in rect: CGRect) {
+    init(_ wave: Wave, in rect: CGRect) {
         
         self.wave = wave
         self.points = [CGPoint]()
@@ -78,7 +78,7 @@ private struct WaveGeometry {
 
 struct WaveShape: Shape {
     
-    var wave: SiriWave.Wave
+    var wave: Wave
     
     func path(in rect: CGRect) -> Path {
         
@@ -92,7 +92,7 @@ struct WaveShape: Shape {
         
     }
     
-    var animatableData: SiriWave.Wave.AnimatableData {
+    var animatableData: Wave.AnimatableData {
         
         get {
             return wave.animatableData
@@ -108,7 +108,7 @@ struct WaveShape: Shape {
 
 struct WaveView: View {
     
-    var wave: SiriWave.Wave
+    var wave: Wave
     var color: Color
     
     var body: some View {
