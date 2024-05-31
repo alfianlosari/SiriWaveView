@@ -16,7 +16,7 @@ public struct SiriWaveView: View {
         Color(red: (25 / 255), green: (122 / 255), blue: (255 / 255))
     ]
     let supportLineColor: Color = .white
-    
+
     @Binding var power: Double
     
     public init(power: Binding<Double>) {
@@ -24,7 +24,9 @@ public struct SiriWaveView: View {
     }
     
     public var body: some View {
+        
         GeometryReader { geometry in
+            
             ZStack {
                 SupportLine(color: self.supportLineColor)
                 ForEach(0..<self.colors.count, id: \.self) { i in
@@ -36,6 +38,7 @@ public struct SiriWaveView: View {
             .drawingGroup()
         }
     }
+    
 }
 
 struct SiriWaveView_Previews: PreviewProvider {
