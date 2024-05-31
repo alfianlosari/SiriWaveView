@@ -7,24 +7,6 @@
 //
 
 import SwiftUI
-import Observation
-
-@Observable
-class SiriWave {
-    
-    var waves: [Wave] = []
-    
-    init(numWaves: Int, power: Double) {
-        updateWaves(numWaves: numWaves, power: power)
-    }
-    
-    func updateWaves(numWaves: Int, power: Double) {
-        for _ in 0..<numWaves {
-            waves.append(.random(withPower: power))
-        }
-    }
-    
-}
 
 struct Curve: Equatable {
     

@@ -9,9 +9,7 @@
 import SwiftUI
 
 public struct SiriWaveView: View {
-    
-    @State var siriWave: SiriWave
-    
+        
     let colors: [Color] = [
         Color(red: (173 / 255), green: (57 / 255), blue: (76 / 255)),
         Color(red: (48 / 255), green: (220 / 255), blue: (155 / 255)),
@@ -23,7 +21,6 @@ public struct SiriWaveView: View {
     
     public init(power: Binding<Double>) {
         self._power = power
-        self.siriWave = SiriWave(numWaves: colors.count, power: power.wrappedValue)
     }
     
     public var body: some View {
@@ -31,26 +28,21 @@ public struct SiriWaveView: View {
             ZStack {
                 SupportLine(color: self.supportLineColor)
                 ForEach(0..<self.colors.count, id: \.self) { i in
-                    WaveView(wave: self.siriWave.waves[i], color: self.colors[i])
-//                        .animation(.spring())
+                    WaveView(power: $power, color: self.colors[i])
                         .animation(.linear(duration: 0.3))
-//                        .shadow(color: self.colors[i], radius: 2, x: 0, y: 0)
-                }
+                }                
             }
             .blendMode(.lighten)
             .drawingGroup()
-        }
-        .onChange(of: self.power) {
-            siriWave.updateWaves(numWaves: colors.count, power: $1)
-        }
-        .onAppear {
-            
         }
     }
 }
 
 struct SiriWaveView_Previews: PreviewProvider {
+    
+    @State static var power = 1.0
+    
     static var previews: some View {
-        SiriWaveView(power: .constant(1))
+        SiriWaveView(power: $power)
     }
 }

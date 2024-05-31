@@ -108,12 +108,12 @@ struct WaveShape: Shape {
 
 struct WaveView: View {
     
-    var wave: Wave
+    @Binding var power: Double
     var color: Color
     
     var body: some View {
         
-        WaveShape(wave: wave)
+        WaveShape(wave: .random(withPower: power))
             .fill(color)
         
     }
@@ -122,6 +122,6 @@ struct WaveView: View {
 
 struct WaveView_Previews: PreviewProvider {
     static var previews: some View {
-        WaveView(wave: .random(withPower: 1), color: Color(.red))
+        WaveView(power: .constant(1), color: Color(.red))
     }
 }
